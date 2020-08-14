@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-web-app1",
+  "version": "0.0.0",
+  "description": "NodejsWebApp1",
+  "scripts": {
+    "start": "node server"
+  },
+  "engines": {
+    "node": "~6.10.x"
+  },
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "dom-parser": "^0.1.6",
+    "express": "^4.17.1",
+    "node-html-parser": "^1.2.20",
+    "querystring": "^0.2.0",
+    "text-to-svg": "^3.1.5"
+  }
+}

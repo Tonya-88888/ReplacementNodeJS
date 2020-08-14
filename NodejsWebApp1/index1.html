@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>text to svg</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <div class=" mx-auto" style="width: 200px ">
+        <div >
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                Добавить
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Окно для ввода</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/">
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            <input class="form-control"  id="myString" action="Text" name="text" maxlength="8" aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">
+                                Вы можете ввести до 8-ми любых символов.
+                            </small>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
+                            <button type="submit" name="buttonSubmit" id="buttonSubmit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+   
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                Введенный текст
+            </div>
+            <div class="col-sm">
+                Картинка
+            </div>
+        </div>
+        <div id="results"></div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+</html>
