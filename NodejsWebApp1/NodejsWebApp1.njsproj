@@ -31,6 +31,9 @@
     <Content Include="index1.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="key.config">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config" />
