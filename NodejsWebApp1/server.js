@@ -15,23 +15,38 @@ var port = process.env.PORT || 1337;
 
 http.createServer(function (req, res) {
 
+
     res.setHeader("UserId", 12);
-    res.setHeader("Content-Type", "text/html; charset=utf-8;");
-
-    let a = fs.readFileSync("index1.html");
-    res.write(a);
-
+  
     let urlParts = url.parse(req.url);
     console.log(urlParts.pathname);
 
-    if (req.method == "POST") {
+    if (req.method == "GET") {
         switch (urlParts.pathname) {
-          
+
             case "/encode":
-                Encode(req, res);
+               
+              Encode(req, res);
+        
+                break;
+
+            case "/image":
+                Image(req, res);
+
+                break;
+
+            default:
+               
+                res.setHeader("Content-Type", "text/html; charset=utf-8;");
+
+                let a = fs.readFileSync("index1.html");
+                res.write(a);
                 break;
         }
     }
+
+
+    res.end();
    
 
 }).listen(port);
@@ -41,46 +56,39 @@ http.createServer(function (req, res) {
 function Encode(req, res) {
 
 
-    let body = '';
-    req.on('data', chunk => {
-        body += chunk.toString();
-    });
-    req.on('end', () => {
-        let params = parse(body);
 
-        let text = EncryptData(params.text);
+    let urlRequest = url.parse(req.url, true);
+    let str = urlRequest.query.text;
 
-        let buff = new Buffer(text);
-        let base64data = buff.toString('base64');
+    let text = EncryptData(str);
 
+    let buff = new Buffer(text);
+    let base64data = buff.toString('base64');
 
-        res.write(`  <div class="container"> <div class="row">
-            <div class="col-sm">
-                ${params.text}
-            </div>
-            <div class="col-sm">
-                 ${Image(base64data, res)}
-            </div>
-        </div> </div>`);
+    res.write("/image?text=" + base64data);
 
-        res.end();
-    });
+  
 }
 
 function Image(req, res) {
 
-   
-    let buff = new Buffer(req, 'base64');
-    let text = buff.toString('ascii');
-
-    let str = DecryptData(text);
-
+    res.writeHead(200, { 'Content-Type': 'image/svg+xml' });
 
     const textToSVG = TextToSVG.loadSync();
     const attributes = { fill: 'black' };
-    const options = { x: 0, y: 0, fontSize: 16, anchor: 'top', attributes: attributes };   
+    const options = { x: 0, y: 0, fontSize: 16, anchor: 'top', attributes: attributes };
 
-    return textToSVG.getSVG(str, options);
+    let urlRequest = url.parse(req.url, true);
+    let str = urlRequest.query.text;
+
+
+ let buff = new Buffer(str, 'base64');
+ let text = buff.toString('ascii');
+
+ let mystr = DecryptData(text);
+ 
+
+    res.write(textToSVG.getSVG(mystr, options));
 
 }
 
@@ -104,9 +112,6 @@ function EncryptData(str) {
     var encrypted = encrypt.update(str, 'utf8', 'hex');
     encrypted += encrypt.final('hex');
 
-    console.log(encrypted);
-
-   
 
     return encrypted;
 }

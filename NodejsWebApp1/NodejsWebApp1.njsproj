@@ -31,6 +31,9 @@
     <Content Include="index1.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\js\site.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="key.config">
       <SubType>Code</SubType>
     </Content>
@@ -39,6 +42,10 @@
     <Content Include="Web.Debug.config" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\js\" />
+    <Folder Include="public\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
